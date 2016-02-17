@@ -1,0 +1,115 @@
+% ==============================================================================
+% DVG001
+% Introduktion till Linux och små nätverk
+% ---------------------------------------
+% Author:
+% Jonas Sjöberg     <tel12jsg@student.hig.se>
+%
+% License:
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+% See LICENSE.md for full licensing information.
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\inputencoding{utf8}
+\usepackage[T1]{fontenc}
+\usepackage[swedish]{babel}
+\usepackage[swedish]{isodate}
+
+\usepackage{csquotes}               % Behövs av biblatex
+%\usepackage[natbib=true,
+%            style=numeric,
+%            backend=biber]{biblatex}
+\usepackage[natbib=true,
+            style=ieee,
+            backend=biber]{biblatex}
+\addbibresource{tex/refs.bib}
+
+\usepackage{lmodern}
+\usepackage{fullpage}
+
+\usepackage[binary-units=true]{siunitx}
+\usepackage{float}
+%\usepackage{textcomp}
+\usepackage{url}
+\usepackage{graphicx}
+%\usepackage{amssymb}
+%\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\usepackage{verbatim}
+%\usepackage{listings}
+
+\usepackage[pdfusetitle,
+            bookmarks=true,
+            bookmarksnumbered=true,
+            bookmarksopen=false,
+            breaklinks=false,
+            pdfborder={0 0 0},
+            backref=false,
+            colorlinks=false]{hyperref}
+
+\newcommand{\screenshot}[4]{
+\begin{figure}[H]
+\centering
+%\includegraphics[width=\linewidth]{#1}
+\includegraphics[height=8.0cm]{#1}
+\caption[#2]{#3}
+\label{#4}
+\end{figure}
+}
+
+
+\title{\textsc{DVG001}                         \\
+       Introduktion till Linux och små nätverk \\
+       Laboration 2}
+
+\author{                                 \\
+  Jonas Sjöberg                          \\
+  860224-xxxx                            \\
+  Högskolan i Gävle                      \\
+  \texttt{tel12jsg@student.hig.se}       \\
+  %\texttt{https://github.com/jonasjberg} \\
+}
+
+\date{}
+
+\begin{document}
+  \maketitle
+
+  \begin{center}
+  \begin{tabular}{l r}
+    Utförd: & \isodate \printdate{2016-01-26} -- \today \\
+    Kursansvarig lärare: & Anders Jackson
+  \end{tabular}
+  \end{center}
+
+  \begin{abstract}
+    Laboration i kursen \emph{DVG001 -- Introduktion till Linux och små
+    nätverk} som läses på distans via Högskolan i Gävle under vårterminen 2016.
+    Laborationen behandlar skapandet av en arbetsmiljö som kommer att användas
+    under kursens gång.
+  \end{abstract}
+
+  \newpage
+  %\hypersetup{linkcolor=black}
+  \setcounter{tocdepth}{3}
+  \tableofcontents
+
+  \newpage
+  \listoffigures
+
+  \input{tex/intro.tex}
+  \input{tex/content.tex}
+
+  \newpage
+  \input{tex/results.tex}
+
+  \addcontentsline{toc}{section}{Referenser}
+  \printbibliography{}
+
+\end{document}
