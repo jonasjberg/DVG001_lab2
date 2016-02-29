@@ -13,11 +13,13 @@ abstract:
 Inlämningsuppgift två
 ================================================================================
 
-I denna inlämningsuppgift skall ni laborerar med kommandoraden, det s.k. kommandoskalet. 
+I denna inlämningsuppgift skall ni laborerar med kommandoraden, det s.k.
+kommandoskalet. 
 Ni skall lämna in en rapport och programmet inlupp.sh.
 
-I den här delen vill jag att ni dokumenterar hur ni har skapat följande katalogstruktur med följande
-innehåll. Berätta var ni hittade information om de kommandon som ni använder.
+I den här delen vill jag att ni dokumenterar hur ni har skapat följande
+katalogstruktur med följande innehåll. Berätta var ni hittade information om de
+kommandon som ni använder.
 
 Vad jag vill ha är alltså ett skript som heter inlupp.sh och som skapar
 följande katalogstruktur och filer när det körs.
@@ -77,31 +79,33 @@ cat(1)-kommandot1.
 Glöm inte att göra skalprogrammet exekverbart när det skapas av inlupp.sh.
 
 
-1   När man skriver cat(1) så menar man att kommandot finns dokumenterat bland Linux manualsidor, sektion ett.
-    Prova då följande i kommandoskalet: man 1 cat eller man cat.
+1 När man skriver cat(1) så menar man att kommandot finns dokumenterat bland
+  Linux manualsidor, sektion ett.  
+  Prova då följande i kommandoskalet: man 1 cat eller man cat.
+
 
 
 Rapporten
 --------------------------------------------------------------------------------
-Den rapport som ni skriver skall innehålla ett försättsblad som innehåller laborationens namn,
-datum, ert namn, födelsedatum/personnummer samt datorpostadress (den som ni har fått här på
-högskolan).
+Den rapport som ni skriver skall innehålla ett försättsblad som innehåller
+laborationens namn, datum, ert namn, födelsedatum/personnummer samt
+datorpostadress (den som ni har fått här på högskolan).
 
-Rapporten skall vara skriven så att jag kan följa vad ni har gjort. Ingen roman behövs dock, ca 4-7
-sidor totalt med text och bilagor som i det här laborationsunderlaget. Då räknar jag in alla sidor,
-inklusive försättsblad.
+Rapporten skall vara skriven så att jag kan följa vad ni har gjort. Ingen roman
+behövs dock, ca 4-7 sidor totalt med text och bilagor som i det här
+laborationsunderlaget. Då räknar jag in alla sidor, inklusive försättsblad.
 
-Följande delar/rubriker kan vara bra att ha i rapporten.
-   1. Försättsblad
-   2. Innehållsförteckning (ej nödvändig om rapporten bara innehåller två sidor)
-   3. Inledning: Ni beskriver problemet och vilka frågor som skall besvaras
-   4. Genomförande: Här beskriver ni hur ni har löst laborationen
-   5. Slutsatser: Här beskriver ni svaren på frågorna i Inledning:en
-   6. Övrigt: Om ni vill lägga till något som inte får plats i Slutsatser
-   7. Referenser: Här anger ni de dokument och URL:er som ni använt er av för att hitta
-      information. Notera att ni bör referera till dem från texten.
-   8. Bilagor: Här lägger ni stora bilder och programlistningar. Ni bör även här referera till dem
-      från texten i rapporten.
+Följande delar/rubriker kan vara bra att ha i rapporten:
+1. Försättsblad
+2. Innehållsförteckning (ej nödvändig om rapporten bara innehåller två sidor)
+3. Inledning: Ni beskriver problemet och vilka frågor som skall besvaras
+4. Genomförande: Här beskriver ni hur ni har löst laborationen
+5. Slutsatser: Här beskriver ni svaren på frågorna i Inledning:en
+6. Övrigt: Om ni vill lägga till något som inte får plats i Slutsatser
+7. Referenser: Här anger ni de dokument och URL:er som ni använt er av för att hitta
+   information. Notera att ni bör referera till dem från texten.
+8. Bilagor: Här lägger ni stora bilder och programlistningar. Ni bör även här referera till dem
+   från texten i rapporten.
 
 Rapporten skall lämnas in i PDF-format och inget annat. Rapporten och
 programmet inlupp.sh lägger ni i en katalog samt använd programmet tar eller

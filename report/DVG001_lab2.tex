@@ -32,7 +32,7 @@
 
 \usepackage[binary-units=true]{siunitx}
 \usepackage{float}
-%\usepackage{textcomp}
+\usepackage{textcomp}
 \usepackage{url}
 \usepackage{graphicx}
 %\usepackage{amssymb}
@@ -40,9 +40,6 @@
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{microtype}
-
-\usepackage{verbatim}
-%\usepackage{listings}
 
 \usepackage[pdfusetitle,
             bookmarks=true,
@@ -62,6 +59,38 @@
 \label{#4}
 \end{figure}
 }
+
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{listings}
+
+\usepackage{minted}
+\usemintedstyle{bw}
+
+\newmintedfile[shellcode]{bash}{
+%bgcolor=mintedbackground,
+%fontfamily=tt,
+fontsize=\footnotesize,
+linenos=true,
+numberblanklines=true,
+numbersep=12pt,
+numbersep=5pt,
+%gobble=0,
+frame=lines,
+%framerule=0.4pt,
+framesep=2mm,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false
+samepage=false,
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+                   
+\renewcommand\listingscaption{Program source code}
+\renewcommand\listoflistingscaption{List of program sources}
 
 
 \title{\textsc{DVG001}                         \\
