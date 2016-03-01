@@ -50,8 +50,19 @@ Filen \texttt{inlupp.sh} skapas i texteditorn Vim.
 
 
 
-Den första raden i filen har en särskild betydelse. 
+Den första raden i filen som börjar med \texttt{\#!}\cite{wiki:shebang}  kallas
+för ''shebang'' och har den generella formen \texttt{#!interpreter
+[optional-arg]}, där \texttt{interpreter} är sökvägen till det program som ska
+exekvera filen och \texttt{[optional-arg]} är eventuella argument som ska
+skickas till programmet då filen körs.
+
+%\begin{minted}{c} 
+%int main() { 
+  %printf("hello, world"); 
+  %return 0; 
+%} 
+%\end{minted}
+
 %\shellcode[firstline=1, lastline=1]{../src/inlupp.sh}
 %\mint{bash}|#!/usr/bin/env bash|
-\mint{html}|<h2>Something <b>here</b></h2>|
 

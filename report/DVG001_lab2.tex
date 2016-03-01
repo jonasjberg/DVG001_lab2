@@ -14,9 +14,12 @@
 
 \usepackage[utf8]{inputenc}
 \inputencoding{utf8}
-\usepackage[T1]{fontenc}
 \usepackage[swedish]{babel}
 \usepackage[swedish]{isodate}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{fullpage}
 
 \usepackage{csquotes}               % Behövs av biblatex
 %\usepackage[natbib=true,
@@ -27,9 +30,6 @@
             backend=biber]{biblatex}
 \addbibresource{tex/refs.bib}
 
-\usepackage{lmodern}
-\usepackage{fullpage}
-
 \usepackage[binary-units=true]{siunitx}
 \usepackage{float}
 \usepackage{textcomp}
@@ -39,7 +39,7 @@
 %\usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
-\usepackage{microtype}
+%\usepackage{microtype}
 
 \usepackage[pdfusetitle,
             bookmarks=true,
@@ -60,34 +60,34 @@
 \end{figure}
 }
 
+\usepackage{minted}
+\usemintedstyle{bw}
+
 \usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{listings}
 
-\usepackage{minted}
-\usemintedstyle{bw}
-
-\newmintedfile[shellcode]{bash}{
-%bgcolor=mintedbackground,
-%fontfamily=tt,
-fontsize=\footnotesize,
-linenos=true,
-numberblanklines=true,
-numbersep=12pt,
-numbersep=5pt,
-%gobble=0,
-frame=lines,
-%framerule=0.4pt,
-framesep=2mm,
-funcnamehighlighting=true,
-tabsize=4,
-obeytabs=false,
-mathescape=false
-samepage=false,
-showspaces=false,
-showtabs =false,
-texcl=false,
-}
+%\newmintedfile[shellcode]{bash}{
+%%bgcolor=mintedbackground,
+%%fontfamily=tt,
+%fontsize=\footnotesize,
+%linenos=true,
+%numberblanklines=true,
+%numbersep=12pt,
+%numbersep=5pt,
+%%gobble=0,
+%frame=lines,
+%%framerule=0.4pt,
+%framesep=2mm,
+%funcnamehighlighting=true,
+%tabsize=4,
+%obeytabs=false,
+%mathescape=false
+%samepage=false,
+%showspaces=false,
+%showtabs =false,
+%texcl=false,
+%}
                    
 \renewcommand\listingscaption{Program source code}
 \renewcommand\listoflistingscaption{List of program sources}
