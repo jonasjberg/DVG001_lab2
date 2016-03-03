@@ -4,9 +4,20 @@ set -e
 
 TEST_DIR="testdir"
 
+C_NORMAL=$(tput sgr0)
+C_RED=$(tput setaf 1)
+C_GREEN=$(tput setaf 2)
+C_YELLOW=$(tput setaf 3)
 
-echo "[+] Starting test runner .."
-echo "    Setting up test environment .."
+function msg_info()
+{
+    TAB='  '
+    printf "${GREEN}[+]${NORMAL}${TAB}"
+    printf "%s ..\n" "$*"
+}
+
+msg_info "Starting test runner"
+msg_info "Setting up test environment"
 
 if [ -x "$TEST_DIR" ]
 then
@@ -23,16 +34,21 @@ echo "[+] Starting test now .."
 (
     cd testdir
     ./inlupp.sh
+
+    echo "_________________________________________________________________"
+    echo "[+] Done running script .."
+    echo "    folder contents:"
     tree
 
-    for f in $(find . -type f)
+    for f in $(find . -type f -not -name "inlupp.sh")
     do
-        echo "File contents:"
-        echo "    ${f}"
+        echo "File: ${f}"
+        echo "Contents:"
         cat "$f"
         echo ""
     done
 )
 
-echo "Done running test"
+echo "Done running test!"
+echo "_________________________________________________________________"
 

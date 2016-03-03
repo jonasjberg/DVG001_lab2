@@ -93,20 +93,21 @@ function create_folder()
 }
 
 
-d1="laborationett"
+
+d1="${SCRIPT_DIR}/laborationett"
 d2="${d1}/katalogen"
 d3="${d1}/katalogto"
 
-echo 'fil ett' > "filett.txt"
+echo 'fil ett' > "${SCRIPT_DIR}/filett.txt"
 
-mkdir -v "$d1"
+mkdir "$d1"
 echo 'fil två' > "${d1}/filtvaa.txt"
 echo 'fil tre' > "${d1}/filtree.txt"
 
 #create_file 'fil två' "${d1}/filtvaa.txt"
 #create_file 'fil tre' "${d1}/filtree.txt"
 
-mkdir -v "${d2}"
+mkdir "${d2}"
 cat << EOF > "${d2}/skalpgm.sh" 
 #!/usr/bin/env bash
 wc -l 
