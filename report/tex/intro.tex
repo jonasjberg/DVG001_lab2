@@ -47,12 +47,19 @@ under laborationen:
   \item Laborationen utförs på en \texttt{ProBook-6545b} laptop som kör
         \texttt{Xubuntu 15.10} på \texttt{Linux 3.19.0-28-generic}.
 
-  \item Rapporten skrivs i \LaTeX\ med texteditorn \texttt{Vim} och kompileras
-        till pdf med \texttt{latexmk}.
+  \item Rapporten skrivs i \LaTeX\  som kompileras till pdf med \texttt{latexmk}.
 
-  \item För revisionskontroll används \texttt{Git}.
+  \item Både rapporten och koden skrivs med texteditorn \texttt{Vim}.
+
+  \item För versionshantering av både rapporten och programkod används \texttt{Git}.
 
   \item Virtualisering sker med \texttt{Oracle VirtualBox} version
         \texttt{5.0.10\_Ubuntu r104061}.
-
 \end{itemize}
+
+Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom att 
+projektets repository klonas in i Debian-maskinen med kommandot 
+\texttt{git clone ssh://spock@192.168.1.107/home/spock/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/}
+Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i gästsystemet.
+All kod skrivs i text-editorn \texttt{Vim}.
+
