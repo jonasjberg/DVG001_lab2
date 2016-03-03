@@ -5,15 +5,20 @@ set -e
 TEST_DIR="testdir"
 
 
+echo "[+] Starting test runner .."
+echo "    Setting up test environment .."
+
 if [ -x "$TEST_DIR" ]
 then
     rm -rfv "$TEST_DIR"
 fi
-    
+
 mkdir -v testdir
 cp -v inlupp.sh testdir
 
-echo "Setting up test environment .."
+
+echo "[+] Starting test now .."
+
 # Anvand ett sub-shell for att isolera "cd"-kommandot.
 (
     cd testdir

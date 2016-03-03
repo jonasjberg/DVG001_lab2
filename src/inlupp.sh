@@ -149,7 +149,8 @@ poem.}
 made so famous by the hero of the poem.}
 EOF
 
-# Skapa fil "data.txt" med godtyckligt innehåll.
+# Skapa katalog och fil "data.txt" med godtyckligt innehåll.
+mkdir -v "${d3}"
 cat << EOF > "${d3}/data.txt"
 II.
 
@@ -163,8 +164,8 @@ SCYLD'S SUCCESSORS.--HROTHGAR'S GREAT MEAD-HALL.
           Was famed mid the folk (his father departed,
           The prince from his dwelling), till afterward sprang
         5 Great-minded Healfdene; the Danes in his lifetime
-          He graciously governed, grim-mooded, agèd.
+          He graciously governed, grim-mooded, agèd
 EOF
 
-# Skapa filfyra.txt med innehåll "fil fyra".
+# Skapa filfyra.txt med innehåll "fil fyra"
 echo 'fil fyra' > "${d3}/filfyra.txt"
