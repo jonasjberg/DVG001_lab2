@@ -14,8 +14,14 @@
 # ______________________________________________________________________________
 
 
+# Avbryt direkt om ett kommando returnerar ett felvärde (nollskiljt)
+set -e                         
+
 # Den här filens namn, utan fullständig sökväg.
 SCRIPT_NAME=$(basename $0)
+
+# Fullständig sökväg katalogen som scriptet ligger i.
+SCRIPT_DIR=$(dirname $0)
 
 # Hämta färginformation, spara till variabler.
 C_NORMAL=$(tput sgr0)
@@ -90,17 +96,26 @@ function create_folder()
 d1="laborationett"
 d2="${d1}/katalogen"
 d3="${d1}/katalogto"
-cat 'fil ett' > "filett.txt"
+
+echo 'fil ett' > "filett.txt"
 
 mkdir -v "$d1"
-cat 'fil två' > "${d1}/filtvaa.txt"
-cat 'fil tre' > "${d1}/filtreetxt"
+echo 'fil två' > "${d1}/filtvaa.txt"
+echo 'fil tre' > "${d1}/filtree.txt"
+
+#create_file 'fil två' "${d1}/filtvaa.txt"
+#create_file 'fil tre' "${d1}/filtree.txt"
 
 mkdir -v "${d2}"
-touch "${d2}/skalpgm.sh" 
+cat << EOF > "${d2}/skalpgm.sh" 
+#!/usr/bin/env bash
+wc -l 
+EOF
 
-touch "${d2}/data.txt"        innehåll: godtycklig text, hitta på något.
-cat <<EOF
+# Spara godtycklig text i filen "data.txt" med ett "here document".
+# Referens: Advanced Bash-Scripting Guide
+#           http://tldp.org/LDP/abs/html/here-docs.html
+cat << EOF > "${d2}/data.txt"
 BEOWULF.
 
 
@@ -134,8 +149,22 @@ poem.}
 made so famous by the hero of the poem.}
 EOF
 
-laborationett/katalogto/data.txt        innehåll: godtycklig text, något annat.
-laborationett/katalogto/filfyra.txt     innehåll: ”fil fyra”.
+# Skapa fil "data.txt" med godtyckligt innehåll.
+cat << EOF > "${d3}/data.txt"
+II.
+
+SCYLD'S SUCCESSORS.--HROTHGAR'S GREAT MEAD-HALL.
 
 
+{Beowulf succeeds his father Scyld}
 
+          In the boroughs then Beowulf, bairn of the Scyldings,
+          Belovèd land-prince, for long-lasting season
+          Was famed mid the folk (his father departed,
+          The prince from his dwelling), till afterward sprang
+        5 Great-minded Healfdene; the Danes in his lifetime
+          He graciously governed, grim-mooded, agèd.
+EOF
+
+# Skapa filfyra.txt med innehåll "fil fyra".
+echo 'fil fyra' > "${d3}/filfyra.txt"
