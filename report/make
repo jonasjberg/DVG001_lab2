@@ -1,28 +1,50 @@
 #!/usr/bin/env bash
 
+#set -x
+
 SCRIPT_PATH=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 SCRIPT_NAME=$(basename $0)
+#PDF_VIEWER="xdg-open"
+PDF_VIEWER="evince"
 
+function msg_notify()
+{
+    if command -v "convert" >/dev/null
+    then
+        notify-send --icon="/usr/share/icons/Adwaita/scalable/emotes/emote-love-symbolic.svg" "$SCRIPT_NAME" "$@"
+    fi
+}
+
+function msg_fail()
+{
+    if command -v "convert" >/dev/null
+    then
+        notify-send --icon="/usr/share/icons/Adwaita/scalable/emotes/face-uncertain-symbolic.svg" "$SCRIPT_NAME FAILED" "$@"
+    fi
+}
+
+
+# Run all this stuff in a sub-shell because reasons.
 (
 cd "$SCRIPT_PATH"
 echo "now working from directory: \"$(pwd -P)\""
 
-#MKCMD="latexmk DVG001_lab2 -outdir=build -pdf -pdflatex=\"pdflatex -shell-escape -interaction=nonstopmode\""
-latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex -interaction=nonstopmode -shell-escape"
-latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex -interaction=nonstopmode -shell-escape"
-latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex -interaction=nonstopmode -shell-escape"
+#latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex -interaction=nonstopmode -shell-escape"
+MKCMD="latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex\ -interaction=nonstopmode\ -shell-escape""
+$MKCMD; $MKCMD; $MKCMD
 
-notify-send "DONE MAKING PDF" "latexmk returned: $?"
+text_done="done making pdf\nlatexmk returned: $?"
+msg_notify "$(echo ${text_done})"
 
 pdf_file=$(find ./build -type f -name "*.pdf")
 pdf_file_is_open=$(ps aux | grep "$pdf_file" | grep -v grep)
 
-if [ -z $pdf_file_is_open ]
+if [ -z "$pdf_file_is_open" ]
 then
-    notify-send "$SCRIPT_NAME" "Opening pdf file with default viewer .."
-    xdg-open "$pdf_file"
+    msg_notify "Opening pdf file with \"$PDF_VIEWER\" .."
+    PDF_VIEWER "$pdf_file" 2>/dev/null
 else
-    notify-send "$SCRIPT_NAME" "pdf updated"
+    msg_notify "pdf (probably) updated on disk"
 fi
 
 #$MKCMD
@@ -30,3 +52,9 @@ fi
 #$MKCMD
 )
 
+if [ $? -ne 0 ]
+then
+    msg_fail "something failed"
+else
+    exit 0
+fi
