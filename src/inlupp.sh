@@ -1,35 +1,35 @@
 #!/usr/bin/env bash
 # ______________________________________________________________________________
 #
-# DVG001
-# Introduktion till Linux och små nätverk
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DVG001 -- Introduktion till Linux och små nätverk
+#                              Inlämningsuppgift #2
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Author:   Jonas Sjöberg
 #           tel12jsg@student.hig.se
 #
-# License:  Creative Commons Attribution-NonCommercial-ShareAlike 
-#           4.0 International
-#           See LICENSE.md for full licensing information.
-# Date:     2016-03-03 --
+# Date:     2016-03-03 -- 2016-03-07
+#
+# License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+#           <http://creativecommons.org/licenses/by/4.0/legalcode>
+#           See LICENSE.md for additional licensing information.
 # ______________________________________________________________________________
 
+set -e                     # Avbryt om ett kommando returnerar fel (nollskiljt)
+#set -x                    # Avkommentera för debug-läge
 
-# Avbryt direkt om ett kommando returnerar ett felvärde (nollskiljt)
-set -e                         
+SCRIPT_NAME=$(basename $0) # Den här filens namn, utan fullständig sökväg.
+SCRIPT_DIR=$(dirname $0)   # Katalogen som den här filen ligger i.
 
-# Avkommentera för debug-läge
-#set -x
-
-# Den här filens namn, utan fullständig sökväg.
-SCRIPT_NAME=$(basename $0)
-
-# Fullständig sökväg katalogen som scriptet ligger i.
-SCRIPT_DIR=$(dirname $0)
-
+# Funktion msg_error
+# Skriver ut felmeddelanden till både stdout och stderror.
 function msg_error()
 {
     printf "${SCRIPT_NAME} [ERROR] : %s\n" "$*" 2>&1
 }
+
+# Funktion create_file
+# Skapar en fil med ett visst innehåll. Behöver två argument:
+# sökväg till målfilen och innehållet som ska användas.
 
 function create_file()
 {
@@ -82,8 +82,6 @@ echo 'fil ett' > "${SCRIPT_DIR}/filett.txt"
 create_dir "$d1"
 create_file "${d1}/filtvaa.txt" 'fil två'
 create_file "${d1}/filtree.txt" 'fil tre'
-#echo 'fil två' > "${d1}/filtvaa.txt"
-#echo 'fil tre' > "${d1}/filtree.txt"
 
 # Skapa katalog och filen 'skalpgm.sh'
 # EOF är omringat med '' för att allt i "here-dokumentet" ska tolkas ordgrant
@@ -113,8 +111,10 @@ printf "\n%s %s\n" "totalt antal rader:" "$antal_rader"
 cd --
 EOF
 
+
 # Gör programmet 'skalpgm.sh' exekverbart.
 chmod +x "${d2}/skalpgm.sh"
+
 
 # Spara godtycklig text i filen "data.txt" med ett "here document".
 # Referens: Advanced Bash-Scripting Guide
@@ -153,6 +153,7 @@ poem.}
 made so famous by the hero of the poem.}
 EOF
 
+
 # Skapa katalog och fil "data.txt" med godtyckligt innehåll.
 mkdir "${d3}"
 cat << EOF > "${d3}/data.txt"
@@ -170,6 +171,7 @@ SCYLD'S SUCCESSORS.--HROTHGAR'S GREAT MEAD-HALL.
         5 Great-minded Healfdene; the Danes in his lifetime
           He graciously governed, grim-mooded, agèd
 EOF
+
 
 # Skapa filfyra.txt med innehåll "fil fyra"
 echo 'fil fyra' > "${d3}/filfyra.txt"
