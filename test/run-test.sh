@@ -68,7 +68,7 @@ mkdir -v "$TEST_DIR"
 cp -v "${SRC_DIR}/inlupp.sh" "$TEST_DIR"
 
 
-msg_type info "Starting test now"
+msg_type info "STARTING TEST NOW"
 
 # Anvand ett sub-shell for att isolera "cd"-kommandot.
 (
@@ -87,6 +87,8 @@ msg_type info "Starting test now"
     done
 
     msg_type info "Running \"skalpgm.sh\""
+    cd "laborationett/katalogen" || msg_type error "Failed changing directory"
+    ./skalpgm.sh || msg_type error "Failed executing \"skalpgm.sh\""
 )
 
 

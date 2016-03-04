@@ -28,7 +28,7 @@ SCRIPT_DIR=$(dirname $0)
 
 function msg_error()
 {
-    printf "${SCRIPT_NAME} [ERROR] : %s" "$*" 2>&1
+    printf "${SCRIPT_NAME} [ERROR] : %s\n" "$*" 2>&1
 }
 
 function create_file()
@@ -46,7 +46,7 @@ function create_file()
         msg_error "Destination already exists"
         return 1
     else
-        if [ ! -w "$dest" ]
+        if [ -w "$dest" ]
         then
             msg_error "Need write permissions for destination"
             return 1
@@ -55,7 +55,7 @@ function create_file()
             echo "$cont" > "$dest"
             # Använd returvärdet från echo-operationen som returvärde för
             # funktionen 'create_fil_ett'.
-            return $*
+            return $?
         fi
     fi
 }
@@ -83,22 +83,27 @@ create_file "${d1}/filtree.txt" 'fil tre'
 #echo 'fil tre' > "${d1}/filtree.txt"
 
 # Skapa katalog och filen 'skalpgm.sh'
-# EOF är omringat med '' för att allt i "here-dokmentet" ska tolkas ordgrant
-# och inte ersättas på något vis med variablers värden eller output från
-# "command substitution".
+# EOF är omringat med '' för att allt i "here-dokumentet" ska tolkas ordgrant
+# och inte ersättas med t.ex. variablers värden eller output från "command
+# substitution".
 create_dir "${d2}"
 cat << 'EOF' > "${d2}/skalpgm.sh" 
 #!/usr/bin/env bash
 # Räknar antal rader i './data.txt' och '../katalogto/data.txt'
 
-# Flaggan '-P' till pwd visar faktiskt sökväg, utan eventuella länkar.
-SCRIPT_DIR=$(pwd -P)
-cd "${SCRIPT_DIR}/laborationett/"
-echo "NUVARANDE KATALOG: $(pwd)"
-#antal_rader=$(cat "katalogen/data.txt" "katalogto/data.txt" | wc -l)
-printf "%s %s" "totalt antal rader:" "$antal_rader" 
-cd -
+# Hämta full sökväg till scriptet under många omständigheter.
+# http://stackoverflow.com/a/246128
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "now in: ${SCRIPT_DIR}"
+cd "$SCRIPT_DIR" && cd ..
+echo "now in: $(pwd -P)"
+antal_rader=$(cat "katalogen/data.txt" "katalogto/data.txt" | wc -l)
+printf "\n%s %s\n" "totalt antal rader:" "$antal_rader" 
+cd --
 EOF
+
+# Gör programmet 'skalpgm.sh' exekverbart.
+chmod +x "${d2}/skalpgm.sh"
 
 # Spara godtycklig text i filen "data.txt" med ett "here document".
 # Referens: Advanced Bash-Scripting Guide
