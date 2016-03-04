@@ -51,10 +51,13 @@ function create_file()
             msg_error "Need write permissions for destination"
             return 1
         else
-            # Skapar en fil med innehållet 'fil ett'.  
+            # Skriv innehållet i variabeln "cont" till en filen med sökväg/namn
+            # enligt variabeln "dest".
             echo "$cont" > "$dest"
+
             # Använd returvärdet från echo-operationen som returvärde för
-            # funktionen 'create_fil_ett'.
+            # funktionen 'create_fil_ett'. Kan användas för felkontroll, där
+            # nollskiljt returvärde är någon typ av fel.
             return $?
         fi
     fi
@@ -92,12 +95,20 @@ cat << 'EOF' > "${d2}/skalpgm.sh"
 # Räknar antal rader i './data.txt' och '../katalogto/data.txt'
 
 # Hämta full sökväg till scriptet under många omständigheter.
-# http://stackoverflow.com/a/246128
+# Källa: http://stackoverflow.com/a/246128
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "now in: ${SCRIPT_DIR}"
+
+# Se till att vara i rätt katalog för att nedanstående cat-kommando
+# funkar med relativa sökvägar till de båda 'data.txt'-filerna.
 cd "$SCRIPT_DIR" && cd ..
-echo "now in: $(pwd -P)"
+
+# Använd "command substitution" för att spara resultatet av pipelinen
+# till variabeln "antal_rader".
 antal_rader=$(cat "katalogen/data.txt" "katalogto/data.txt" | wc -l)
+
+# Skriv ut resultatet med printf.
+# Referens: "Pro Bash Programming: Scripting the GNU/Linux Shell"
+#           Johnson, Chris and Varma, Jayant. 2nd Edition. Apress 2015.
 printf "\n%s %s\n" "totalt antal rader:" "$antal_rader" 
 cd --
 EOF
