@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+#set -e
 
 TEST_DIR="run_test"
 SRC_DIR="../src"
@@ -72,7 +72,7 @@ msg_type info "Starting test now"
 
 # Anvand ett sub-shell for att isolera "cd"-kommandot.
 (
-    cd $TEST_DIR && ./inlupp.sh || msg_error "Failed to start"
+    cd $TEST_DIR && ./inlupp.sh || msg_type error "Failed to start"
 
     msg_type info "Done running script .."
     msg_type info "Contents of "$(pwd)":"
@@ -85,6 +85,8 @@ msg_type info "Starting test now"
         cat "$f"
         echo ""
     done
+
+    msg_type info "Running \"skalpgm.sh\""
 )
 
 
