@@ -23,40 +23,6 @@ SCRIPT_NAME=$(basename $0)
 # Fullständig sökväg katalogen som scriptet ligger i.
 SCRIPT_DIR=$(dirname $0)
 
-# Hämta färginformation, spara till variabler.
-C_NORMAL=$(tput sgr0)
-C_RED=$(tput setaf 1)
-C_GREEN=$(tput setaf 2)
-C_YELLOW=$(tput setaf 3)
-
-
-function msg()
-{
-    TAB='  '
-    MSG_FORMAT="%s\n"
-
-    printf "${GREEN}[${SCRIPT_NAME}]${NORMAL}${TAB}"
-    printf "$MSG_FORMAT" "$@"
-}
-
-function msg_error()
-{
-    TAB='  '
-    MSG_FORMAT="%s\n"
-
-    printf "${RED}[${SCRIPT_NAME}]${NORMAL}${TAB}"
-    printf "$MSG_FORMAT" "$@"
-}
-
-function msg_warning()
-{
-    TAB='  '
-    MSG_FORMAT="%s\n"
-
-    printf "${YELLOW}[${SCRIPT_NAME}]${NORMAL}${TAB}"
-    printf "$MSG_FORMAT" "$@"
-}
-
 function create_file()
 {
     local dest="$1"
