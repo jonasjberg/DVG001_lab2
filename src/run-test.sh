@@ -48,7 +48,7 @@ msg_info "Starting test now"
     cd $TEST_DIR && ./inlupp.sh || msg_error "Failed to start"
 
     msg_info "Done running script .."
-    msg_info "${Folder} contents:"
+    msg_info "Contents of "$(pwd)":"
     tree
 
     for f in $(find . -type f -not -name "inlupp.sh")
