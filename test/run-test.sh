@@ -47,7 +47,7 @@ function msg_type()
 
     TIMESTAMP="$(date +%H:%M:%S)"
 
-    printf "${C_BLUE}[${TIMESTAMP}]${C_NORMAL}${HALFTAB}${label}"
+    printf "${C_BLUE}[${TIMESTAMP}]${C_NORMAL} ${label}"
     printf "${FULLTAB}%s\n" "$text"
 
     #time box text
@@ -86,6 +86,7 @@ msg_type info "Starting test now"
         echo ""
     done
 )
+
 
 msg_type info "Done running test"
 
