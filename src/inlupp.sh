@@ -17,6 +17,9 @@
 # Avbryt direkt om ett kommando returnerar ett felvärde (nollskiljt)
 set -e                         
 
+# Avkommentera för debug-läge
+#set -x
+
 # Den här filens namn, utan fullständig sökväg.
 SCRIPT_NAME=$(basename $0)
 
@@ -28,11 +31,12 @@ function create_file()
     local dest="$1"
     local cont="$2"
 
-    if [ -z "$dest_path" ]
+    if [ -z "$dest" ]
     then
         msg_error "Missing argument"
         return 1
-    elif [ -e "$dest" ] 
+    fi
+    if [ -e "$dest" ] 
     then
         msg_error "Destination already exists"
         return 1
@@ -51,11 +55,12 @@ function create_file()
     fi
 }
 
-function create_folder()
+function create_dir()
 {
     local dest="$1"
 
-    mkdir -vp "$1"
+    # Flaggan '-p' skapar om nödvändigt underkataloger till målkatalogen.
+    mkdir -p "$dest"
 }
 
 
@@ -66,17 +71,22 @@ d3="${d1}/katalogto"
 
 echo 'fil ett' > "${SCRIPT_DIR}/filett.txt"
 
-mkdir "$d1"
+create_dir "$d1"
+#create_file 'fil två' "${d1}/filtvaa.txt"
+#create_file 'fil tre' "${d1}/filtree.txt"
 echo 'fil två' > "${d1}/filtvaa.txt"
 echo 'fil tre' > "${d1}/filtree.txt"
 
-#create_file 'fil två' "${d1}/filtvaa.txt"
-#create_file 'fil tre' "${d1}/filtree.txt"
-
+# Skapa katalog och filen 'skalpgm.sh'
 mkdir "${d2}"
 cat << EOF > "${d2}/skalpgm.sh" 
 #!/usr/bin/env bash
-wc -l 
+# Räknar antal rader i './data.txt' och '../katalogto/data.txt'
+
+SCRIPT_DIR=$(dirname $0)
+cd "$SCRIPT_DIR"
+antal_rader=$(cat "data.txt" "../katalogto/data.txt" | wc -l)
+cd -
 EOF
 
 # Spara godtycklig text i filen "data.txt" med ett "here document".
@@ -117,7 +127,7 @@ made so famous by the hero of the poem.}
 EOF
 
 # Skapa katalog och fil "data.txt" med godtyckligt innehåll.
-mkdir -v "${d3}"
+mkdir "${d3}"
 cat << EOF > "${d3}/data.txt"
 II.
 
