@@ -32,8 +32,10 @@ echo "now working from directory: \"$(pwd -P)\""
 
 
 # Run three times just to make sure..
-MKCMD="latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex\ -interaction=nonstopmode\ -shell-escape""
-$MKCMD; $MKCMD; $MKCMD
+MKCMD="latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex\ -synctex=1\ -interaction=nonstopmode\ -shell-escape""
+$MKCMD 2>&1 | msg_notify
+$MKCMD 2>&1 | msg_notify
+$MKCMD 2>&1 | msg_notify
 
 msg_notify "done making pdf\nlatexmk returned: $?"
 

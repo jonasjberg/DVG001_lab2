@@ -31,6 +31,11 @@ function create_file()
 {
     # Skapar en fil med ett visst innehåll. Behöver två argument:
     # sökväg till målfilen och innehållet som ska användas.
+    if [ $# -ne 2 ]
+    then
+        return 1
+    return
+
     local dest="$1"
     local cont="$2"
 
