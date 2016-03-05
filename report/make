@@ -30,7 +30,8 @@ function msg_fail()
 cd "$SCRIPT_PATH"
 echo "now working from directory: \"$(pwd -P)\""
 
-#latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex -interaction=nonstopmode -shell-escape"
+
+# Run three times just to make sure..
 MKCMD="latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex\ -interaction=nonstopmode\ -shell-escape""
 $MKCMD; $MKCMD; $MKCMD
 
