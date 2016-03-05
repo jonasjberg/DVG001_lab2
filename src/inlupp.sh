@@ -20,19 +20,17 @@ set -e                     # Avbryt om ett kommando returnerar fel (nollskiljt)
 SCRIPT_NAME=$(basename $0) # Den här filens namn, utan fullständig sökväg.
 SCRIPT_DIR=$(dirname $0)   # Katalogen som den här filen ligger i.
 
-# Funktion msg_error
-# Skriver ut felmeddelanden till både stdout och stderror.
 function msg_error()
 {
+    # Funktion msg_error
+    # Skriver ut felmeddelanden till både stdout och stderror.
     printf "${SCRIPT_NAME} [ERROR] : %s\n" "$*" 2>&1
 }
 
-# Funktion create_file
-# Skapar en fil med ett visst innehåll. Behöver två argument:
-# sökväg till målfilen och innehållet som ska användas.
-
 function create_file()
 {
+    # Skapar en fil med ett visst innehåll. Behöver två argument:
+    # sökväg till målfilen och innehållet som ska användas.
     local dest="$1"
     local cont="$2"
 
@@ -65,6 +63,7 @@ function create_file()
 
 function create_dir()
 {
+    # Funktion create_dir skapar en katalog.
     local dest="$1"
 
     # Flaggan '-p' skapar om nödvändigt underkataloger till målkatalogen.
