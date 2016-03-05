@@ -14,6 +14,55 @@
 \section{Inledning}\label{inledning}
 % Skriv en kort inledning här som beskriver kortfattat vad rapporten handlar
 % om. Den skall vara orienterande om Bakgrund och Syfte.
+Uppgiften går ut på att skriva ett exekverbart \texttt{shell}-skript som ska
+skapa en uppsättning filer, kataloger och ytterligare skript.
+
+Det resultat som efterfrågas är en viss katalogstruktur och visas i
+Tabell~\ref{table-katalog}.
+
+\begin{table}[]
+  \centering
+  \caption{Efterfrågad katalogstruktur}
+  \label{table-beskrivning}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+            Sökväg                               & Beskrivning                               \\ \midrule
+    \texttt{inlupp.sh}                           & ett program                               \\
+    \texttt{filett.txt}                          & innehåll: ''\texttt{fil ett}''            \\
+    \texttt{laborationett/}                      &                                           \\
+    \texttt{laborationett/filtvaa.txt}           & innehåll: ''\texttt{fil två}''            \\
+    \texttt{laborationett/filtree.txt}           & innehåll: ''\texttt{fil tre}''            \\
+    \texttt{laborationett/katalogen/}            &                                           \\
+    \texttt{laborationett/katalogen/skalpgm.sh}  & ett program                               \\
+    \texttt{laborationett/katalogen/data.txt}    & innehåll: godtycklig text, hitta på något \\
+    \texttt{laborationett/katalogto/data.txt}    & innehåll: godtycklig text, något annat    \\
+    \texttt{laborationett/katalogto/filfyra.txt} & innehåll: ''\texttt{fil fyra}''           \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+
+Det önskade slutresultatet kan också visualiseras enligt Figur~\ref{fig:tree}.
+
+\begin{minted}{bash}
+spock@ProBookII ~/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/src/test
+> $ tree --charset ascii
+.
+|-- filett.txt
+|-- inlupp.sh
+`-- laborationett
+    |-- filtree.txt
+    |-- filtvaa.txt
+    |-- katalogen
+    |   |-- data.txt
+    |   `-- skalpgm.sh
+    `-- katalogto
+        |-- data.txt
+        `-- filfyra.txt
+
+3 directories, 8 files
+\end{minted}
+
+
 
 
 % ______________________________________________________________________________
@@ -57,8 +106,8 @@ under laborationen:
         \texttt{5.0.10\_Ubuntu r104061}.
 \end{itemize}
 
-Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom att 
-projektets repository klonas in i Debian-maskinen med kommandot 
+Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom att
+projektets repository klonas in i Debian-maskinen med kommandot
 \begin{verbatim}
 git clone ssh://spock@192.168.1.107/home/spock/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/
 \end{verbatim}
