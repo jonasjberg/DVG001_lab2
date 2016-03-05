@@ -7,11 +7,12 @@ SCRIPT_NAME=$(basename $0)
 #PDF_VIEWER="xdg-open"
 PDF_VIEWER="evince"
 
+
 function msg_notify()
 {
     if command -v "convert" >/dev/null
     then
-        notify-send --icon="/usr/share/icons/Adwaita/scalable/emotes/emote-love-symbolic.svg" "$SCRIPT_NAME" "$@"
+        notify-send --icon="/usr/share/icons/Adwaita/scalable/emotes/emote-love-symbolic.svg" "$SCRIPT_NAME" "$(echo ${@})"
     fi
 }
 
@@ -33,28 +34,29 @@ echo "now working from directory: \"$(pwd -P)\""
 MKCMD="latexmk DVG001_lab2 -outdir=build -pdf -pdflatex="pdflatex\ -interaction=nonstopmode\ -shell-escape""
 $MKCMD; $MKCMD; $MKCMD
 
-text_done="done making pdf\nlatexmk returned: $?"
-msg_notify "$(echo ${text_done})"
+msg_notify "done making pdf\nlatexmk returned: $?"
 
-pdf_file=$(find ./build -type f -name "*.pdf")
+
+# Grab first pdf file in the build directory. Could be wrong but hey.
+pdf_file=$(find ./build -type f -name "*.pdf" | head -n 1)
+
+# Check if the pdf file is open somewhere.
 pdf_file_is_open=$(ps aux | grep "$pdf_file" | grep -v grep)
 
+# Open with viewer if not already open
 if [ -z "$pdf_file_is_open" ]
 then
     msg_notify "Opening pdf file with \"$PDF_VIEWER\" .."
-    PDF_VIEWER "$pdf_file" 2>/dev/null
+    $PDF_VIEWER "$pdf_file" 2>/dev/null &
 else
     msg_notify "pdf (probably) updated on disk"
 fi
-
-#$MKCMD
-#$MKCMD
-#$MKCMD
 )
 
+# Display error message if return != 0
 if [ $? -ne 0 ]
 then
-    msg_fail "something failed"
+    msg_fail "FAILED! something returned non-zero"
 else
     exit 0
 fi
