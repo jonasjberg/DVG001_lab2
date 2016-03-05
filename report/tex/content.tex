@@ -47,17 +47,18 @@
 
 \subsection{Filen inlupp.sh}
 Filen \texttt{inlupp.sh} är det primära resultatet av uppgiften. Filens innehåll
-är bifogat i rapporten som ~\ref{src:inlupp}.
+är bifogat i rapporten under Kod~\ref{listing:inlupp}.
 
 
 
-%Den första raden i filen som börjar med \texttt{\#!}\cite{wiki:shebang}  kallas
-%för ''shebang'' och har den generella formen \texttt{#!interpreter
-%[optional-arg]}, där \texttt{interpreter} är sökvägen till det program som ska
-%exekvera filen och \texttt{[optional-arg]} är eventuella argument som ska
-%skickas till programmet då filen körs.
+Den första raden i filen som börjar med \mint{shell}{#!} \cite{wiki:shebang}
+kallas för ''shebang'' och har den generella formen \texttt{#!interpreter
+[optional-arg]}, där \texttt{interpreter} är sökvägen till det program som ska
+exekvera filen och \texttt{[optional-arg]} är eventuella argument som ska
+skickas till programmet då filen körs.
 
 %#\inputminted{bash}{../src/inlupp.sh}
+\begin{listing}[H]
 \shellcode{../src/inlupp.sh}
 \caption{Example from external file}
-\label{src:inlupp}
+\label{listing:inlupp}
