@@ -92,11 +92,13 @@ showtabs =false,
 texcl=false,
 }
                    
-\renewcommand\listingscaption{Källkod}
-\renewcommand\listoflistingscaption{Lista med källkod}
+\renewcommand\listingscaption{Programlistning}
+\renewcommand\listoflistingscaption{Programlistningar}
 
 \usepackage{booktabs}
 \usepackage{longtable}              % Tables span across pages
+
+\usepackage{pdfpages}
 
 
 \title{\textsc{DVG001}                         \\
@@ -108,7 +110,7 @@ texcl=false,
   860224-xxxx                            \\
   Högskolan i Gävle                      \\
   \texttt{tel12jsg@student.hig.se}       \\
-  %\texttt{https://github.com/jonasjberg} \\
+  \texttt{https://github.com/jonasjberg} \\
 }
 
 \date{}
@@ -118,7 +120,7 @@ texcl=false,
 
   \begin{center}
   \begin{tabular}{l r}
-    Utförd: & \isodate \printdate{2016-01-26} -- \today \\
+    Utförd: & \isodate \printdate{2016-03-03} -- \today \\
     Kursansvarig lärare: & Anders Jackson
   \end{tabular}
   \end{center}
@@ -126,8 +128,9 @@ texcl=false,
   \begin{abstract}
     Laboration i kursen \emph{DVG001 -- Introduktion till Linux och små
     nätverk} som läses på distans via Högskolan i Gävle under vårterminen 2016.
-    Laborationen behandlar skapandet av en arbetsmiljö som kommer att användas
-    under kursens gång.
+    Laborationen behandlar skapandet av ett enklare skalprogram eller
+    \texttt{bash}-skript.  Uppgiften innefattar en rad vanliga kommandon och
+    uppgifter som ingår i administration av \texttt{*nix}-system.
   \end{abstract}
 
   \newpage
@@ -135,7 +138,8 @@ texcl=false,
   \setcounter{tocdepth}{3}
   \tableofcontents
 
-  \newpage
+  \bigskip
+
   \listoffigures
   \listoftables
   \listoflistings

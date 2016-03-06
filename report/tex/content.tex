@@ -26,8 +26,10 @@
 % andra, som oss lärare.
 
 
+
+
 % ______________________________________________________________________________
-\subsection{Konfigureration av utvecklingsmiljön}
+\subsection{Konfiguration av utvecklingsmiljön}
 % TODO ..
 % 
 % * fixa sudo
@@ -41,7 +43,7 @@
 %      Lägg till raden:
 %      jonas ALL=(ALL:ALL) ALL  
 
-Den första delen av arbetet bestod av att konfigurera utvecklingsmiljön.
+Den första delen av arbetet bestod av att konfigurera utvecklingsmiljön
 För att kunna installera program och sköta andra administrativa sysslor
 konfigureras \texttt{sudo} enligt följande:
 
@@ -52,13 +54,12 @@ konfigureras \texttt{sudo} enligt följande:
   \item Konfigurationsfilen för \texttt{sudo} ändras. Genom att köra
         följande kommandon så öppnar en särskild texteditor som tillåter en
         säkrare mijö för att ändra i filen \texttt{/etc/sudoers}:
-        \begin{verbatim} 
-        $ su
-        $ visudo
-        \end{verbatim}
+        
+        \texttt{\$ su} \\
+        \texttt{\$ visudo}
 
         Med texteditorn lägger man till raden:
-        \begin{verbatim}jonas ALL=(ALL:ALL) ALL\end{verbatim}
+        \texttt{jonas ALL=(ALL:ALL) ALL}
 
         Det ger användaren \texttt{jonas} möjlighet att köra alla kommandon som 
         administratör med hjälp av \texttt{sudo}.
@@ -67,9 +68,25 @@ konfigureras \texttt{sudo} enligt följande:
 
 Sedan byttes nätverkstypen i \texttt{VirtualBox} till bridged så att
 gästsystemet får en egen IP-adress på nätverket. Det underlättar anslutning med
-\texttt{SSH}, som installerades och konfigurerades i nästa steg i nästa steg i
-nästa steg i nästa steg.
+\texttt{SSH}, som installerades och konfigurerades med kommandot i
+Programlistning~\ref{listing:apt-get}.
 
+\begin{listing}[H]
+\shellcode{tex/apt-get.sh}
+\caption{Kommando för att uppdatera paketlistor och installera texteditorn
+         \texttt{vim} och versionshanteringsprogrammet \texttt{git}}
+\label{listing:apt-get}
+\end{listing}
+
+\subsection{Utveckling av programmet]
+Då jag har skrivit en hel del \texttt{bash}-skript förut så går mycket av det
+jag gör av bara farten. De flesta kommandon har hämtats ur \texttt{man}-sidorna
+men också ur böcker och forum som t.ex. \texttt{stackoverflow}.
+
+För varje större förändring testkörs programmet och resultatet jämförs med det
+önskade resultatet. Innan varje körning kopieras programmet till en särskilt
+testkatalog som nollställts och initierats till ett känt läge innan testet
+börjar. Det är alltså en typ av iterativ utvecklingsprocess.
 
 % Byt nätverkstyp i VirtualBox till bridged
 % Kolla ip-adress, ifconfig deprecated (?)

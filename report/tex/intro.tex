@@ -44,14 +44,6 @@ Tabell~\ref{table-tree}.
 \end{table}
 
 
-Det önskade slutresultatet kan också visualiseras enligt Listning~\ref{listing:tree}.
-
-\begin{listing}[H]
-\shellcode{tex/listing-tree.sh}
-\caption{Önskat slutresultat efter körning av \texttt{inlupp.sh}.}
-\label{listing:tree}
-\end{listing}
-
 
 % ______________________________________________________________________________
 \subsection{Bakgrund}
@@ -69,7 +61,7 @@ Persondatorer kan många gånger kontrolleras hjälpligt från ett rent grafiskt
 gränssnitt men större servrar och system kräver ofta kontroll från ett
 kommandoradsgränssnitt, där skalprogram är avgörande för effektiv hantering av
 systemet.  Det är därför avgörande att ha bra koll på skalprogrammering.
-Eftersom att \texttt{bash} är väldigt vanligt förekommando och dessutom har en
+Eftersom att \texttt{bash} är väldigt vanligt förekommande och dessutom har en
 del gemensamt med övriga skalprogram så är det lämpligt att läras sig skriva
 programkod som körs med \texttt{bash} (\cite{forelasning02}).
 
@@ -82,13 +74,28 @@ programkod som körs med \texttt{bash} (\cite{forelasning02}).
 % Kort och orienterande om hur ni tänkte genomföra uppgiften.
 % Orienterande om Planering och Genomförande.
 Den virtuella maskinen som skapades och installerades i föregående laboration
-används i befintligt skick, med undantaget att uppdateringar intallerats med
+används i befintligt skick, med undantaget att uppdateringar installerats med
 kommandot i Programlistning~\ref{listing:apt-update}.
 
 \begin{listing}[H]
 \shellcode{tex/apt-update.sh}
 \caption{Kommando för att uppdatera paketlistor och installera uppdateringar}
 \label{listing:apt-update}
+\end{listing}
+
+
+Det önskade slutresultatet kan också visualiseras enligt
+Listning~\ref{listing:tree}. Kommandot \texttt{tree} används för att visa
+innehållet i en katalog som skapats för att efterlikna den slutgiltiga
+katalogstruktur som programmet ska skapa.  Vid utveckling av programmet så
+jämförs ''modellen'' av den färdiga katalogstrukturen med vad programmet
+faktiskt skapar, likt moderna metodologier från \emph{TDD -- testdriven
+utveckling}.
+
+\begin{listing}[H]
+\shellcode{tex/listing-tree.sh}
+\caption{Önskat slutresultat efter körning av \texttt{inlupp.sh}.}
+\label{listing:tree}
 \end{listing}
 
 
@@ -117,7 +124,7 @@ under laborationen:
 
 \subsubsection{Versionshantering}
 Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom
-att projektets repository klonas in i Debian-maskinen med kommandot i
+att projektets ''repository'' klonas in i Debian-maskinen med kommandot i
 Programlistning~\ref{listing:gitclone}:
 
 \begin{listing}[H]
@@ -127,7 +134,7 @@ Programlistning~\ref{listing:gitclone}:
 \end{listing}
 
 
-\subsubsection{Vim}
+\subsubsection{SSH och Vim}
 Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i
 gästsystemet.  All kod skrivs i text-editorn \texttt{Vim}. 
 
@@ -140,7 +147,7 @@ en händelse används följande kommando i \texttt{Vim}:
 :map <leader>m :w!\|!./run-test.sh<cr>
 \end{verbatim}
 
-Det gör att tangentkombinationen \texttt{\\ m} binds till följande handlingar:
+Det gör att tangentkombinationen \texttt{\textbackslash m} binds till följande handlingar:
 \begin{enumerate} 
   \item Spara den aktuella buffern (\texttt{:w!}) 
   \item Exekvera ett externt kommando (\texttt{!./run-test.sh})
@@ -150,3 +157,6 @@ Det gör att tangentkombinationen \texttt{\\ m} binds till följande handlingar:
 Även om det bara sparar någon enstaka sekund per körning så är det värt att
 lära sig hantera verktygen på det här sättet för att spara in mycket tid i
 långa loppet.
+
+När utvecklingsmiljön är konfigurerad på ett sätt jag trivs med så går det
+mycket fort att utveckla programmet.
