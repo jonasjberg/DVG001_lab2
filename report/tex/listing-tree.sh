@@ -1,4 +1,4 @@
-> $ tree --charset ascii
+jonas@debian:~/Documents/lab2/test/target$ tree --charset ascii
 .
 |-- filett.txt
 |-- inlupp.sh

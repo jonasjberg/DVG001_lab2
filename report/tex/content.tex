@@ -39,6 +39,32 @@
 %      Lägg till raden:
 %      jonas ALL=(ALL:ALL) ALL  
 
+Den första delen av arbetet bestod av att konfigurera utvecklingsmiljön.
+För att kunna installera program och sköta andra administrativa sysslor
+konfigureras \texttt{sudo} enligt följande:
+
+\begin{enumerate}
+  \item Användaren läggs till i \texttt{sudo}-gruppen med kommandot: \\
+        \texttt{$ adduser jonas sudo}
+
+  \item Konfigurationsfilen för \texttt{sudo} ändras. Genom att köra
+        följande kommandon så öppnar en särskild texteditor som tillåter en
+        säkrare mijö för att ändra i filen \texttt{/etc/sudoers}: \\
+        \begin{verbatim}
+        $ su
+        $ visudo 
+        \end{verbatim}
+
+        Med texteditorn lägger man till raden:
+        \begin{verbatim}
+        jonas ALL=(ALL:ALL) ALL  
+        \end{verbatim}
+
+        Det ger användaren \texttt{jonas} möjlighet att köra alla kommandon som 
+        administratör med hjälp av \texttt{sudo}.
+
+
+
 % Byt nätverkstyp i VirtualBox till bridged
 % Kolla ip-adress, ifconfig deprecated (?)
 % $ ip a 
@@ -62,3 +88,4 @@ Filen \texttt{inlupp.sh} är det primära resultatet av uppgiften. Filens inneh�
 \shellcode{../src/inlupp.sh}
 \caption{Example from external file}
 \label{listing:inlupp}
+\end{listing}
