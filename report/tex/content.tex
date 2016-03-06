@@ -46,25 +46,29 @@ För att kunna installera program och sköta andra administrativa sysslor
 konfigureras \texttt{sudo} enligt följande:
 
 \begin{enumerate}
-  \item Användaren läggs till i \texttt{sudo}-gruppen med kommandot: \\
+  \item Användaren läggs till i \texttt{sudo}-gruppen med kommandot:
         \texttt{$ adduser jonas sudo}
 
   \item Konfigurationsfilen för \texttt{sudo} ändras. Genom att köra
         följande kommandon så öppnar en särskild texteditor som tillåter en
-        säkrare mijö för att ändra i filen \texttt{/etc/sudoers}: \\
-        \begin{verbatim}
+        säkrare mijö för att ändra i filen \texttt{/etc/sudoers}:
+        \begin{verbatim} 
         $ su
-        $ visudo 
+        $ visudo
         \end{verbatim}
 
         Med texteditorn lägger man till raden:
-        \begin{verbatim}
-        jonas ALL=(ALL:ALL) ALL  
-        \end{verbatim}
+        \begin{verbatim}jonas ALL=(ALL:ALL) ALL\end{verbatim}
 
         Det ger användaren \texttt{jonas} möjlighet att köra alla kommandon som 
         administratör med hjälp av \texttt{sudo}.
+\end{enumerate}
 
+
+Sedan byttes nätverkstypen i \texttt{VirtualBox} till bridged så att
+gästsystemet får en egen IP-adress på nätverket. Det underlättar anslutning med
+\texttt{SSH}, som installerades och konfigurerades i nästa steg i nästa steg i
+nästa steg i nästa steg.
 
 
 % Byt nätverkstyp i VirtualBox till bridged
@@ -73,21 +77,3 @@ konfigureras \texttt{sudo} enligt följande:
 % ...
 
 
-\subsection{Filen inlupp.sh}
-Filen \texttt{inlupp.sh} är det primära resultatet av uppgiften. Filens innehåll
-är bifogat i rapporten under Kod~\ref{listing:inlupp}.
-
-
-
-%Den första raden i filen som börjar med \mint{shell}{#!} \cite{wiki:shebang}
-%kallas för ''shebang'' och har den generella formen \texttt{#!interpreter
-%[optional-arg]}, där \texttt{interpreter} är sökvägen till det program som ska
-%exekvera filen och \texttt{[optional-arg]} är eventuella argument som ska
-%skickas till programmet då filen körs.
-
-%#\inputminted{bash}{../src/inlupp.sh}
-\begin{listing}[H]
-\shellcode{../src/inlupp.sh}
-\caption{Example from external file}
-\label{listing:inlupp}
-\end{listing}

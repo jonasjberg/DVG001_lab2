@@ -79,8 +79,8 @@ programkod som körs med \texttt{bash} (\cite{forelasning02}).
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Planering}
-% TODO: Kort och orienterande om hur ni tänkte genomföra uppgiften.
-%       Orienterande om Planering och Genomförande.
+% Kort och orienterande om hur ni tänkte genomföra uppgiften.
+% Orienterande om Planering och Genomförande.
 Den virtuella maskinen som skapades och installerades i föregående laboration
 används i befintligt skick, med undantaget att uppdateringar intallerats med
 kommandot i Programlistning~\ref{listing:apt-update}.
@@ -115,6 +115,7 @@ under laborationen:
         \texttt{5.0.10\_Ubuntu r104061}.
 \end{itemize}
 
+\subsubsection{Versionshantering}
 Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom
 att projektets repository klonas in i Debian-maskinen med kommandot i
 Programlistning~\ref{listing:gitclone}:
@@ -125,29 +126,27 @@ Programlistning~\ref{listing:gitclone}:
 \label{listing:gitclone}
 \end{listing}
 
+
+\subsubsection{Vim}
 Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i
 gästsystemet.  All kod skrivs i text-editorn \texttt{Vim}. 
 
-För att testa koden används ytterligare ett program \texttt{run-tesh.sh} som
-återfinns i Programlistning~\ref{listing:run-test}.
-
-Snabbare testkörningar fås genom att att starta programmet \texttt{run-test.sh}
-med en tangentkombination. I \texttt{Vim} används följande kommando:
+För att testa koden används ytterligare ett program, \texttt{run-tesh.sh} som
+återfinns i Programlistning~\ref{listing:runtest}.  En körning startas med
+tangentkombinationen \texttt{\\ m}.  För att förknippa tangentkombinationen med
+en händelse används följande kommando i \texttt{Vim}:
 
 \begin{verbatim}
 :map <leader>m :w!\|!./run-test.sh<cr>
 \end{verbatim}
 
-Det gör att tangentkombinationen \texttt{\\ m} binds till följande:
+Det gör att tangentkombinationen \texttt{\\ m} binds till följande handlingar:
 \begin{enumerate} 
   \item Spara den aktuella buffern (\texttt{:w!}) 
-  \item Exekvera externt skalkommando (\texttt{!./run-test.sh})
-  \item Tryck enter (\texttt{<cr>})
+  \item Exekvera ett externt kommando (\texttt{!./run-test.sh})
+  \item Simulera en tryckning på enter (\texttt{<cr>})
 \end{enumerate} 
 
-\begin{listing}[H]
-\shellcode{../test/run-test.sh}
-\caption{Källkod för \texttt{run-test.sh}, ett program som kör
-         \texttt{inlupp.sh} och skriver ut resultat av körningen.}
-\label{listing:run-test}
-\end{listing}
+Även om det bara sparar någon enstaka sekund per körning så är det värt att
+lära sig hantera verktygen på det här sättet för att spara in mycket tid i
+långa loppet.
