@@ -41,7 +41,7 @@ Tabell~\ref{table-tree}.
 \end{table}
 
 
-Det önskade slutresultatet kan också visualiseras enligt Figur~\ref{listing:tree}.
+Det önskade slutresultatet kan också visualiseras enligt Listning~\ref{listing:tree}.
 
 \begin{listing}[H]
 \shellcode{tex/listing-tree.sh}
@@ -53,28 +53,41 @@ Det önskade slutresultatet kan också visualiseras enligt Figur~\ref{listing:tr
 % ______________________________________________________________________________
 \subsection{Bakgrund}
 % Beskriv lite mer ingående om bakgrunden till uppgiften, vad den handlar om.
+Under laborationen används den utvecklingsmiljö som skapades i föregående
+laboration.
 
 
 % ______________________________________________________________________________
 \subsection{Syfte}
 % Skriv lite mer ingående om syftet med uppgiften.
-Syftet med uppgiften är att lära ut skalprogrammering som är mycket viktigt för
-administration av mer avancerade datorsystem. Persondatorer typ laptops kan 
-många gånger kontrolleras från ett grafiskt gränssnitt men större servrar och
-system kan många gånger bara kontrolleras från ett kommandoradsgränssnitt.
-Det är därför avgörande att ha bra koll på skalprogrammering. Eftersom att
-\texttt{bash} är väldigt vanligt förekommando och dessutom har en del gemensamt
-med övriga skalprogram så är det lämpligt att läras sig skriva programkod som
-körs med \texttt{bash} (\cite{forelasning02}).
+Syftet med uppgiften är att ge tillfälle att öva på skalprogrammering som är en
+mycket viktig färdighet vid administration av mer avancerade datorsystem.
+Persondatorer kan många gånger kontrolleras hjälpligt från ett rent grafiskt
+gränssnitt men större servrar och system kräver ofta kontroll från ett
+kommandoradsgränssnitt, där skalprogram är avgörande för effektiv hantering av
+systemet.  Det är därför avgörande att ha bra koll på skalprogrammering.
+Eftersom att \texttt{bash} är väldigt vanligt förekommando och dessutom har en
+del gemensamt med övriga skalprogram så är det lämpligt att läras sig skriva
+programkod som körs med \texttt{bash} (\cite{forelasning02}).
 
 % ______________________________________________________________________________
-\subsection{Nomenklatur}
+%\subsection{Nomenklatur}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Planering}
 % TODO: Kort och orienterande om hur ni tänkte genomföra uppgiften.
 %       Orienterande om Planering och Genomförande.
+Den virtuella maskinen som skapades och installerades i föregående laboration
+används i befintligt skick, med undantaget att uppdateringar intallerats med
+kommandot i Programlistning~\ref{listing:apt-update}.
+
+\begin{listing}[H]
+\shellcode{tex/apt-update.sh}
+\caption{Kommando för att uppdatera paketlistor och installera uppdateringar}
+\label{listing:apt-update}
+\end{listing}
+
 
 
 % ______________________________________________________________________________
@@ -99,12 +112,39 @@ under laborationen:
         \texttt{5.0.10\_Ubuntu r104061}.
 \end{itemize}
 
-Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom att
-projektets repository klonas in i Debian-maskinen med kommandot
+Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom
+att projektets repository klonas in i Debian-maskinen med kommandot i
+Programlistning~\ref{listing:gitclone}:
+
+\begin{listing}[H]
+\shellcode{tex/git-clone.sh}
+\caption{Kommando för att hämta in projektet från värdsystemet}
+\label{listing:gitclone}
+\end{listing}
+
+Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i
+gästsystemet.  All kod skrivs i text-editorn \texttt{Vim}. 
+
+För att testa koden används ytterligare ett program \texttt{run-tesh.sh} som
+återfinns i Programlistning~\ref{listing:run-test}.
+
+Snabbare testkörningar fås genom att att starta programmet \texttt{run-test.sh}
+med en tangentkombination. I \texttt{Vim} används följande kommando:
+
 \begin{verbatim}
-git clone ssh://spock@192.168.1.107/home/spock/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/
+:map <leader>m :w!\|!./run-test.sh<cr>
 \end{verbatim}
 
-Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i gästsystemet.
-All kod skrivs i text-editorn \texttt{Vim}.
+Det gör att tangentkombinationen \texttt{\\ m} binds till följande:
+\begin{enumerate} 
+  \item Spara den aktuella buffern (\texttt{:w!}) 
+  \item Exekvera externt skalkommando (\texttt{!./run-test.sh})
+  \item Tryck enter (\texttt{<cr>})
+\end{enumerate} 
 
+\begin{listing}[H]
+\shellcode{../test/run-test.sh}
+\caption{Källkod för \texttt{run-test.sh}, ett program som kör
+         \texttt{inlupp.sh} och skriver ut resultat av körningen.}
+\label{listing:run-test}
+\end{listing}
