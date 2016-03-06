@@ -1,24 +1,81 @@
-% ==============================================================================
-% DVG001
-% Introduktion till Linux och små nätverk
-% ---------------------------------------
-% Author:
-% Jonas Sjöberg     <tel12jsg@student.hig.se>
+% ______________________________________________________________________________
 %
-% License:
-% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-% See LICENSE.md for full licensing information.
-% ==============================================================================
+% DVG001 -- Introduktion till Linux och små nätverk
+%                              Inlämningsuppgift #2
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Author:   Jonas Sjöberg
+%           tel12jsg@student.hig.se
+%
+% Date:     2016-03-03 -- 2016-03-07
+%
+% License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+%           <http://creativecommons.org/licenses/by/4.0/legalcode>
+%           See LICENSE.md for additional licensing information.
+% ______________________________________________________________________________
 
 
 \section{Resultat}
-% Vad är det konkreta resultatet av uppgiften?
+Resultatet är ett fungerande program som möter de krav som ställts.
+Programmet är delvis utökat med extra funktionalitet, däribland test för vanliga
+fel och diverse specialfall (''edge-cases'') men programmet kan fortfarande 
+förbättras på många sätt. Samtidigt så kan den här typen av skalprogram vara
+lämpliga till att sköta enklare uppgifter, särskilt enkla operationer som 
+skapande av kataloger och filer bör kanske inte stoppas i funktioner och
+kompliceras i onödan.
+
+Jag vill hävda att mitt program möter den funktionalitet som efterfrågats.
+Programmet är också skrivet på ett begripligt sätt och innehåller en del
+säkerhetsfunktioner. Dock skulle programmet kunna härdas och förbättras på
+många sätt, men i den här typen av kurs är jag osäker på vart det är dags 
+att dra gränsen och vad som förväntas.
+
 
 \section{Diskussion}
 % Diskutera lite friare om vad resultatet betyder samt vad ni mer lärt er.
 % Även om hur ni kanske skulle gjort annorlunda om ni gjort om det.
+Bra exempel på stabil och välskrivna \texttt{bash}-skript är de som körs som en
+del av boot-processen i Debian och Ubuntu. Delar av mitt enkla testprogram
+\texttt{run-test.sh} har inspirerats av kod som körs under bootsekvensen av
+Debian och ligger bakom de färgade statusmeddelanden som skrivs ut. I
+\mbox{Debian \texttt{8.3} (jessie)} finns programmet i sökvägen
+\texttt{/lib/lsb/init-functions.d/20-left-info-blocks}.
+
+Friheten att kunna ta reda på hur en funktion är implementerad i ett stort och
+avancerat system som Debian, av utvecklare som (förhoppningsvis) vet vad de gör
+är en del av vad som gör öppen och fri programvara överlägsen för studenter av
+mjukvaruutveckling.
+
+En frågeställning som verkar återkommande är den om ''best practice'' inom
+portabla skalprogram. Då jag söker efter råd och svar finns många gånger
+referenser till \texttt{POSIX}-standarden \cite{IEEE:2001:ISRa}
+\cite{IEEE:2001:ISRb} \cite{IEEE:2001:ISRc} \cite{IEEE:2001:ISRd} och samtidigt
+verkar många i praktiken göra kompromisser med användning av standardiserade
+och portabla metoder/program beroende på användningsområde.
+
+Eftersom att \texttt{bash} är så pass vanligt så verkar många så kallade
+''bashisms'' \cite{misc:bashism} användas som ''best practice'' lösningar. Jag
+antar att det svaret kan ligga någonstans mellan praktikalitet och
+perfektionism, beroende på plattform, användningsområdet, etc.
+
+
+
 
 
 \section{Slutsatser}
 % Sammanfatta vad ni fått för resultat, utgå från syftet som ni angett i
 % Syfte ovan.
+Jag skriver ofta små program i \texttt{bash} eller \texttt{python} för att lösa
+olika problem som dyker upp i min vardagliga datoranvänding, eller helt enkelt
+för att automatisera repetitiva uppgifter. 
+
+Det kan vara svårt att förklara för ''oinvigda'' hur pass kraftfullt ett sådant
+arbetssätt är.  Den frihet som det innebär att själv kunna utveckla lösningar
+på problem, på ett relativt enkelt sätt och på kort tid, är otroligt värdefull. 
+
+\texttt{Unix}-liknande system i allmänhet ser ökad populäritet i och med så
+kallade ''internet of things'', mobiltelefoner och andra datorplattformar
+konstruerade kring någon typ av \texttt{unix}-inspirerad bas. Även innan det så
+har de alltid utgjort stommen av de största systemen och nätverken.
+Arbetsmarknaden verkar behöva duktiga systemadministratörer särskilt erfarna av
+\texttt{*nix}-system och jag misstänker att en riktigt duktig och erfaren
+\texttt{bash}-programmerare alltid kan hitta jobb.

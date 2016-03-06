@@ -1,38 +1,96 @@
-% ==============================================================================
-% DVG001
-% Introduktion till Linux och små nätverk
-% ---------------------------------------
-% Author:
-% Jonas Sjöberg     <tel12jsg@student.hig.se>
+% ______________________________________________________________________________
 %
-% License:
-% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-% See LICENSE.md for full licensing information.
-% ==============================================================================
+% DVG001 -- Introduktion till Linux och små nätverk
+%                              Inlämningsuppgift #2
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Author:   Jonas Sjöberg
+%           tel12jsg@student.hig.se
+%
+% Date:     2016-03-03 -- 2016-03-07
+%
+% License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+%           <http://creativecommons.org/licenses/by/4.0/legalcode>
+%           See LICENSE.md for additional licensing information.
+% ______________________________________________________________________________
 
 
 \section{Inledning}\label{inledning}
 % Skriv en kort inledning här som beskriver kortfattat vad rapporten handlar
 % om. Den skall vara orienterande om Bakgrund och Syfte.
+Uppgiften går ut på att skriva ett exekverbart \texttt{shell}-skript som ska
+skapa en uppsättning filer, kataloger och ytterligare skript.
+
+Det resultat som efterfrågas är en viss katalogstruktur och visas i
+Tabell~\ref{table-tree}.
+
+\begin{table}[]
+  \centering
+  \caption{Efterfrågad katalogstruktur}
+  \label{table-tree}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+            Sökväg                               & Beskrivning                               \\ \midrule
+    \texttt{inlupp.sh}                           & ett program                               \\
+    \texttt{filett.txt}                          & innehåll: ''\texttt{fil ett}''            \\
+    \texttt{laborationett/}                      &                                           \\
+    \texttt{laborationett/filtvaa.txt}           & innehåll: ''\texttt{fil två}''            \\
+    \texttt{laborationett/filtree.txt}           & innehåll: ''\texttt{fil tre}''            \\
+    \texttt{laborationett/katalogen/}            &                                           \\
+    \texttt{laborationett/katalogen/skalpgm.sh}  & ett program                               \\
+    \texttt{laborationett/katalogen/data.txt}    & innehåll: godtycklig text, hitta på något \\
+    \texttt{laborationett/katalogto/data.txt}    & innehåll: godtycklig text, något annat    \\
+    \texttt{laborationett/katalogto/filfyra.txt} & innehåll: ''\texttt{fil fyra}''           \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+
+Det önskade slutresultatet kan också visualiseras enligt Listning~\ref{listing:tree}.
+
+\begin{listing}[H]
+\shellcode{tex/listing-tree.sh}
+\caption{Önskat slutresultat efter körning av \texttt{inlupp.sh}.}
+\label{listing:tree}
+\end{listing}
 
 
 % ______________________________________________________________________________
 \subsection{Bakgrund}
 % Beskriv lite mer ingående om bakgrunden till uppgiften, vad den handlar om.
+Under laborationen används den utvecklingsmiljö som skapades i föregående
+laboration.
 
 
 % ______________________________________________________________________________
 \subsection{Syfte}
 % Skriv lite mer ingående om syftet med uppgiften.
+Syftet med uppgiften är att ge tillfälle att öva på skalprogrammering som är en
+mycket viktig färdighet vid administration av mer avancerade datorsystem.
+Persondatorer kan många gånger kontrolleras hjälpligt från ett rent grafiskt
+gränssnitt men större servrar och system kräver ofta kontroll från ett
+kommandoradsgränssnitt, där skalprogram är avgörande för effektiv hantering av
+systemet.  Det är därför avgörande att ha bra koll på skalprogrammering.
+Eftersom att \texttt{bash} är väldigt vanligt förekommando och dessutom har en
+del gemensamt med övriga skalprogram så är det lämpligt att läras sig skriva
+programkod som körs med \texttt{bash} (\cite{forelasning02}).
 
 % ______________________________________________________________________________
-\subsection{Nomenklatur}
+%\subsection{Nomenklatur}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Planering}
 % TODO: Kort och orienterande om hur ni tänkte genomföra uppgiften.
 %       Orienterande om Planering och Genomförande.
+Den virtuella maskinen som skapades och installerades i föregående laboration
+används i befintligt skick, med undantaget att uppdateringar intallerats med
+kommandot i Programlistning~\ref{listing:apt-update}.
+
+\begin{listing}[H]
+\shellcode{tex/apt-update.sh}
+\caption{Kommando för att uppdatera paketlistor och installera uppdateringar}
+\label{listing:apt-update}
+\end{listing}
+
 
 
 % ______________________________________________________________________________
@@ -57,9 +115,39 @@ under laborationen:
         \texttt{5.0.10\_Ubuntu r104061}.
 \end{itemize}
 
-Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom att 
-projektets repository klonas in i Debian-maskinen med kommandot 
-\texttt{git clone ssh://spock@192.168.1.107/home/spock/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/}
-Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i gästsystemet.
-All kod skrivs i text-editorn \texttt{Vim}.
+Koden hålls under versionshantering av \texttt{Git}. Själva arbetet sker genom
+att projektets repository klonas in i Debian-maskinen med kommandot i
+Programlistning~\ref{listing:gitclone}:
 
+\begin{listing}[H]
+\shellcode{tex/git-clone.sh}
+\caption{Kommando för att hämta in projektet från värdsystemet}
+\label{listing:gitclone}
+\end{listing}
+
+Därefter sköts arbetet med koden genom en \texttt{SSH}-anslutning in i
+gästsystemet.  All kod skrivs i text-editorn \texttt{Vim}. 
+
+För att testa koden används ytterligare ett program \texttt{run-tesh.sh} som
+återfinns i Programlistning~\ref{listing:run-test}.
+
+Snabbare testkörningar fås genom att att starta programmet \texttt{run-test.sh}
+med en tangentkombination. I \texttt{Vim} används följande kommando:
+
+\begin{verbatim}
+:map <leader>m :w!\|!./run-test.sh<cr>
+\end{verbatim}
+
+Det gör att tangentkombinationen \texttt{\\ m} binds till följande:
+\begin{enumerate} 
+  \item Spara den aktuella buffern (\texttt{:w!}) 
+  \item Exekvera externt skalkommando (\texttt{!./run-test.sh})
+  \item Tryck enter (\texttt{<cr>})
+\end{enumerate} 
+
+\begin{listing}[H]
+\shellcode{../test/run-test.sh}
+\caption{Källkod för \texttt{run-test.sh}, ett program som kör
+         \texttt{inlupp.sh} och skriver ut resultat av körningen.}
+\label{listing:run-test}
+\end{listing}

@@ -1,14 +1,17 @@
-% ==============================================================================
-% DVG001
-% Introduktion till Linux och små nätverk
-% ---------------------------------------
-% Author:
-% Jonas Sjöberg     <tel12jsg@student.hig.se>
+% ______________________________________________________________________________
 %
-% License:
-% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-% See LICENSE.md for full licensing information.
-% ==============================================================================
+% DVG001 -- Introduktion till Linux och små nätverk
+%                              Inlämningsuppgift #2
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Author:   Jonas Sjöberg
+%           tel12jsg@student.hig.se
+%
+% Date:     2016-03-03 -- 2016-03-07
+%
+% License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+%           <http://creativecommons.org/licenses/by/4.0/legalcode>
+%           See LICENSE.md for additional licensing information.
+% ______________________________________________________________________________
 
 \documentclass[11pt,a4paper]{article}
 
@@ -89,8 +92,11 @@ showtabs =false,
 texcl=false,
 }
                    
-\renewcommand\listingscaption{Program source code}
-\renewcommand\listoflistingscaption{List of program sources}
+\renewcommand\listingscaption{Källkod}
+\renewcommand\listoflistingscaption{Lista med källkod}
+
+\usepackage{booktabs}
+\usepackage{longtable}              % Tables span across pages
 
 
 \title{\textsc{DVG001}                         \\
@@ -131,7 +137,10 @@ texcl=false,
 
   \newpage
   \listoffigures
+  \listoftables
+  \listoflistings
 
+  \newpage
   \input{tex/intro.tex}
   \input{tex/content.tex}
 

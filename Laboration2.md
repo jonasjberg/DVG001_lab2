@@ -4,9 +4,9 @@ title: Laboration 2
 author:
 - name: Anders Jackson
   affiliation: Högskolan i Gävle
-  email: 
+  email:
 date: 2015-09-08
-abstract: 
+abstract:
 ...
 
 
@@ -14,7 +14,7 @@ Inlämningsuppgift två
 ================================================================================
 
 I denna inlämningsuppgift skall ni laborerar med kommandoraden, det s.k.
-kommandoskalet. 
+kommandoskalet.
 Ni skall lämna in en rapport och programmet inlupp.sh.
 
 I den här delen vill jag att ni dokumenterar hur ni har skapat följande
@@ -38,8 +38,8 @@ laborationett/katalogto/filfyra.txt     innehåll: ”fil fyra”.
 
 
 ```bash
-spock@ProBookII ~/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/src/test                                                                                                                 [15:33:09] 
-> $ tree --charset ascii                                                                                                                                                            [master ●●]
+spock@ProBookII ~/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/src/test
+> $ tree --charset ascii
 .
 |-- filett.txt
 |-- inlupp.sh
@@ -58,17 +58,17 @@ spock@ProBookII ~/Dropbox/HIG/DVG001_Linux-nätverk/lab/lab2/src/test           
 
 
 
-## Programmet inlupp.sh 
+## Programmet inlupp.sh
 skall skapa filen filett.txt och katalogen laborationett/ samt de filer som den
 innehåller.
 
-## Programmet skalpgm.sh 
+## Programmet skalpgm.sh
 Skall skriva ut antal rader i 'katalogen/data.txt' och 'katalogto/data.txt'.
 
 Det behöver bara fungera korrekt när man står i katalogen
 laborationett/katalogen/, men det är bra om man kan köra det när man står i
 vilken annan katalog som helst och kör programmet därifrån. Då skall det
-fortfarande räkna rader i data.txt-filerna i de angivna katalogerna ovan. 
+fortfarande räkna rader i data.txt-filerna i de angivna katalogerna ovan.
 
 Tips här är att titta på kommandot pwd(1) och även variabeln $PWD. De kan
 användas när skalpgm.sh skapas.  Använd gärna omstyrning av stdin i programmet
@@ -80,7 +80,7 @@ Glöm inte att göra skalprogrammet exekverbart när det skapas av inlupp.sh.
 
 
 1 När man skriver cat(1) så menar man att kommandot finns dokumenterat bland
-  Linux manualsidor, sektion ett.  
+  Linux manualsidor, sektion ett.
   Prova då följande i kommandoskalet: man 1 cat eller man cat.
 
 
@@ -96,16 +96,18 @@ behövs dock, ca 4-7 sidor totalt med text och bilagor som i det här
 laborationsunderlaget. Då räknar jag in alla sidor, inklusive försättsblad.
 
 Följande delar/rubriker kan vara bra att ha i rapporten:
-1. Försättsblad
-2. Innehållsförteckning (ej nödvändig om rapporten bara innehåller två sidor)
-3. Inledning: Ni beskriver problemet och vilka frågor som skall besvaras
-4. Genomförande: Här beskriver ni hur ni har löst laborationen
-5. Slutsatser: Här beskriver ni svaren på frågorna i Inledning:en
-6. Övrigt: Om ni vill lägga till något som inte får plats i Slutsatser
-7. Referenser: Här anger ni de dokument och URL:er som ni använt er av för att hitta
-   information. Notera att ni bör referera till dem från texten.
-8. Bilagor: Här lägger ni stora bilder och programlistningar. Ni bör även här referera till dem
-   från texten i rapporten.
+
+1. *Försättsblad*
+2. *Innehållsförteckning* (ej nödvändig om rapporten bara innehåller två sidor)
+3. *Inledning*:    Ni beskriver problemet och vilka frågor som skall besvaras
+4. *Genomförande*: Här beskriver ni hur ni har löst laborationen
+5. *Slutsatser*:   Här beskriver ni svaren på frågorna i Inledning:en
+6. *Övrigt*:       Om ni vill lägga till något som inte får plats i Slutsatser
+7. *Referenser*:   Här anger ni de dokument och URL:er som ni använt er av för
+                   att hitta information. Notera att ni bör referera till dem
+                   från texten.
+8. *Bilagor*:      Här lägger ni stora bilder och programlistningar. Ni bör
+                   även här referera till dem från texten i rapporten.
 
 Rapporten skall lämnas in i PDF-format och inget annat. Rapporten och
 programmet inlupp.sh lägger ni i en katalog samt använd programmet tar eller

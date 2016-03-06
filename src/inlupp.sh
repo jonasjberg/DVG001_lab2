@@ -20,39 +20,58 @@ set -e                     # Avbryt om ett kommando returnerar fel (nollskiljt)
 SCRIPT_NAME=$(basename $0) # Den här filens namn, utan fullständig sökväg.
 SCRIPT_DIR=$(dirname $0)   # Katalogen som den här filen ligger i.
 
-# Funktion msg_error
-# Skriver ut felmeddelanden till både stdout och stderror.
+
+# Funktion 'msg_error'
+# Skriver ut meddelanden till stdout och stderror.
 function msg_error()
 {
     printf "${SCRIPT_NAME} [ERROR] : %s\n" "$*" 2>&1
 }
 
-# Funktion create_file
-# Skapar en fil med ett visst innehåll. Behöver två argument:
-# sökväg till målfilen och innehållet som ska användas.
-
+# Funktion 'create_file'
+# Skapar en fil med ett visst innehåll.
+# Tar två argument: sökväg till målfilen och innehållet som ska användas.
 function create_file()
 {
-    local dest="$1"
-    local cont="$2"
+    # Avbryt om antalet argument inte är två.
+    if [ $# -ne 2 ]
+    then
+        return 1
+    fi
 
+    # Variabelutbyte sätter variabeln dest till det som står mellan
+    # minustecknet och högerklammern om variabeln 1 är tom.
+    #
+    #   ${parameter:-word}
+    #   If parameter is unset or null, the expansion of word is substituted.
+    #   Otherwise, the value of parameter is substituted.
+    #
+    # https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+    local dest="${1:-}"
+    local cont="${2:-}"
+
+    # Avbryt om variabeln dest är tom/null.
     if [ -z "$dest" ]
     then
         msg_error "Missing argument"
         return 1
     fi
-    if [ -e "$dest" ] 
+
+    # Avbryt om målfilen redan existerar.
+    if [ -e "$dest" ]
     then
         msg_error "Destination already exists"
         return 1
     else
+
+        # Testa om det finns skrivrättigheter för målfilen.
         if [ -w "$dest" ]
         then
             msg_error "Need write permissions for destination"
             return 1
         else
-            # Skriv innehållet i variabeln "cont" till en filen med sökväg/namn
-            # enligt variabeln "dest".
+            # Skriv innehållet i variabeln "cont" till sökvägen/filnamnet i
+            # variabeln "dest".
             echo "$cont" > "$dest"
 
             # Använd returvärdet från echo-operationen som returvärde för
@@ -63,32 +82,45 @@ function create_file()
     fi
 }
 
+# Funktion 'create_dir'
+# Skapar en katalog. Tar ett argument.
 function create_dir()
 {
-    local dest="$1"
+    local dest="${1:-}"
 
-    # Flaggan '-p' skapar om nödvändigt underkataloger till målkatalogen.
-    mkdir -vp "$dest"
+    # Avbryt om argumentet dest är tomt/null.
+    if [ -z "$dest" ]
+    then
+        return 1
+    else
+        # Flaggan '-p' skapar om nödvändigt underkataloger till målkatalogen.
+        mkdir -p "$dest"
+    fi
 }
 
 
-
+# Lagra de kataloger som ska skapas i variabler d1, d2 och d3.
 d1="${SCRIPT_DIR}/laborationett"
 d2="${d1}/katalogen"
 d3="${d1}/katalogto"
 
-echo 'fil ett' > "${SCRIPT_DIR}/filett.txt"
 
+# Skapa filen 'filtvaa.txt' med funktionen "create_file".
+create_file 'fil två' "${d1}/filtvaa.txt"
+
+
+# Skapa katalog och två filer.
 create_dir "$d1"
 create_file "${d1}/filtvaa.txt" 'fil två'
 create_file "${d1}/filtree.txt" 'fil tre'
+
 
 # Skapa katalog och filen 'skalpgm.sh'
 # EOF är omringat med '' för att allt i "here-dokumentet" ska tolkas ordgrant
 # och inte ersättas med t.ex. variablers värden eller output från "command
 # substitution".
 create_dir "${d2}"
-cat << 'EOF' > "${d2}/skalpgm.sh" 
+cat << 'EOF' > "${d2}/skalpgm.sh"
 #!/usr/bin/env bash
 # Räknar antal rader i './data.txt' och '../katalogto/data.txt'
 
@@ -107,7 +139,7 @@ antal_rader=$(cat "katalogen/data.txt" "katalogto/data.txt" | wc -l)
 # Skriv ut resultatet med printf.
 # Referens: "Pro Bash Programming: Scripting the GNU/Linux Shell"
 #           Johnson, Chris and Varma, Jayant. 2nd Edition. Apress 2015.
-printf "\n%s %s\n" "totalt antal rader:" "$antal_rader" 
+printf "\n%s %s\n" "totalt antal rader:" "$antal_rader"
 cd --
 EOF
 
@@ -155,7 +187,7 @@ EOF
 
 
 # Skapa katalog och fil "data.txt" med godtyckligt innehåll.
-mkdir "${d3}"
+create_dir "${d3}"
 cat << EOF > "${d3}/data.txt"
 II.
 
@@ -174,4 +206,10 @@ EOF
 
 
 # Skapa filfyra.txt med innehåll "fil fyra"
-echo 'fil fyra' > "${d3}/filfyra.txt"
+#echo 'fil fyra' > "${d3}/filfyra.txt"
+create_file "${d3}/filfyra.txt" 'fil fyra'
+
+
+# Avsluta programmet.
+# Returnerar koden från det senast avslutade kommandot.
+exit $?

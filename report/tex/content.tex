@@ -1,17 +1,19 @@
-% ==============================================================================
-% DVG001
-% Introduktion till Linux och små nätverk
-% ---------------------------------------
-% Author:
-% Jonas Sjöberg     <tel12jsg@student.hig.se>
+% ______________________________________________________________________________
 %
-% License:
-% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-% See LICENSE.md for full licensing information.
-% ==============================================================================
+% DVG001 -- Introduktion till Linux och små nätverk
+%                              Inlämningsuppgift #2
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Author:   Jonas Sjöberg
+%           tel12jsg@student.hig.se
+%
+% Date:     2016-03-03 -- 2016-03-07
+%
+% License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+%           <http://creativecommons.org/licenses/by/4.0/legalcode>
+%           See LICENSE.md for additional licensing information.
+% ______________________________________________________________________________
 
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Genomförande}
 % Här skriver ni vilka steg ni gjorde och resultatet av dem. Ni skall ha med
 % information så att vi kan se hur ni har gjort, dvs beskrivande text,
@@ -39,6 +41,32 @@
 %      Lägg till raden:
 %      jonas ALL=(ALL:ALL) ALL  
 
+Den första delen av arbetet bestod av att konfigurera utvecklingsmiljön.
+För att kunna installera program och sköta andra administrativa sysslor
+konfigureras \texttt{sudo} enligt följande:
+
+\begin{enumerate}
+  \item Användaren läggs till i \texttt{sudo}-gruppen med kommandot: \\
+        \texttt{$ adduser jonas sudo}
+
+  \item Konfigurationsfilen för \texttt{sudo} ändras. Genom att köra
+        följande kommandon så öppnar en särskild texteditor som tillåter en
+        säkrare mijö för att ändra i filen \texttt{/etc/sudoers}: \\
+        \begin{verbatim}
+        $ su
+        $ visudo 
+        \end{verbatim}
+
+        Med texteditorn lägger man till raden:
+        \begin{verbatim}
+        jonas ALL=(ALL:ALL) ALL  
+        \end{verbatim}
+
+        Det ger användaren \texttt{jonas} möjlighet att köra alla kommandon som 
+        administratör med hjälp av \texttt{sudo}.
+
+
+
 % Byt nätverkstyp i VirtualBox till bridged
 % Kolla ip-adress, ifconfig deprecated (?)
 % $ ip a 
@@ -46,15 +74,20 @@
 
 
 \subsection{Filen inlupp.sh}
-Filen \texttt{inlupp.sh} skapas i texteditorn Vim.
+Filen \texttt{inlupp.sh} är det primära resultatet av uppgiften. Filens innehåll
+är bifogat i rapporten under Kod~\ref{listing:inlupp}.
 
 
 
-%Den första raden i filen som börjar med \texttt{\#!}\cite{wiki:shebang}  kallas
-%för ''shebang'' och har den generella formen \texttt{#!interpreter
+%Den första raden i filen som börjar med \mint{shell}{#!} \cite{wiki:shebang}
+%kallas för ''shebang'' och har den generella formen \texttt{#!interpreter
 %[optional-arg]}, där \texttt{interpreter} är sökvägen till det program som ska
 %exekvera filen och \texttt{[optional-arg]} är eventuella argument som ska
 %skickas till programmet då filen körs.
 
 %#\inputminted{bash}{../src/inlupp.sh}
+\begin{listing}[H]
 \shellcode{../src/inlupp.sh}
+\caption{Example from external file}
+\label{listing:inlupp}
+\end{listing}
