@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
+# ______________________________________________________________________________
+#
+# DVG001 -- Introduktion till Linux och små nätverk
+#                              Inlämningsuppgift #2
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Author:   Jonas Sjöberg
+#           tel12jsg@student.hig.se
+#
+# Date:     2016-03-03 -- 2016-03-06
+#
+# License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+#           <http://creativecommons.org/licenses/by/4.0/legalcode>
+#           See LICENSE.md for additional licensing information.
+# ______________________________________________________________________________
 
-#set -e
+#set -e                    # Avbryt om ett kommando returnerar fel (nollskiljt)
+#set -x                    # Avkommentera för debug-läge
 
 TEST_DIR="run_test"
 SRC_DIR="../src"
@@ -12,6 +27,7 @@ C_YELLOW=$(tput setaf 3)
 C_BLUE=$(tput setaf 4)
 HALFTAB='  '
 FULLTAB='    '
+
 
 # FUNCTION MSG_TYPE() -- Prints timestamped debug messages
 # Messages can be of three different types (severity): ERROR, INFO and WARNING.
