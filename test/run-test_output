@@ -1,0 +1,129 @@
+[34m[02:42:22](B[m [32m[INFO](B[m    Starting test runner
+[34m[02:42:22](B[m [32m[INFO](B[m    Setting up test environment
+[34m[02:42:22](B[m [33m[WARNING](B[m    Removing previous test environment
+removed ‘run_test/laborationett/katalogto/filfyra.txt’
+removed ‘run_test/laborationett/katalogto/data.txt’
+removed directory: ‘run_test/laborationett/katalogto’
+removed ‘run_test/laborationett/katalogen/skalpgm.sh’
+removed ‘run_test/laborationett/katalogen/data.txt’
+removed directory: ‘run_test/laborationett/katalogen’
+removed ‘run_test/laborationett/filtvaa.txt’
+removed ‘run_test/laborationett/filtree.txt’
+removed directory: ‘run_test/laborationett’
+removed ‘run_test/inlupp.sh’
+removed ‘run_test/filett.txt’
+removed directory: ‘run_test’
+mkdir: created directory ‘run_test’
+‘../src/inlupp.sh’ -> ‘run_test/inlupp.sh’
+[34m[02:42:22](B[m [32m[INFO](B[m    STARTING TEST NOW
+mkdir: created directory ‘./laborationett’
+mkdir: created directory ‘./laborationett/katalogen’
+[34m[02:42:22](B[m [32m[INFO](B[m    Done running script ..
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents of /home/jonas/Documents/lab2/test/run_test:
+.
+├── filett.txt
+├── inlupp.sh
+└── laborationett
+    ├── filtree.txt
+    ├── filtvaa.txt
+    ├── katalogen
+    │   ├── data.txt
+    │   └── skalpgm.sh
+    └── katalogto
+        ├── data.txt
+        └── filfyra.txt
+
+3 directories, 8 files
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./laborationett/katalogto/filfyra.txt
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+fil fyra
+
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./laborationett/katalogto/data.txt
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+II.
+
+SCYLD'S SUCCESSORS.--HROTHGAR'S GREAT MEAD-HALL.
+
+
+{Beowulf succeeds his father Scyld}
+
+          In the boroughs then Beowulf, bairn of the Scyldings,
+          Belovèd land-prince, for long-lasting season
+          Was famed mid the folk (his father departed,
+          The prince from his dwelling), till afterward sprang
+        5 Great-minded Healfdene; the Danes in his lifetime
+          He graciously governed, grim-mooded, agèd
+
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./laborationett/katalogen/skalpgm.sh
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+#!/usr/bin/env bash
+# Räknar antal rader i './data.txt' och '../katalogto/data.txt'
+
+# Hämta full sökväg till scriptet under många omständigheter.
+# Källa: http://stackoverflow.com/a/246128
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Se till att vara i rätt katalog för att nedanstående cat-kommando
+# funkar med relativa sökvägar till de båda 'data.txt'-filerna.
+cd "$SCRIPT_DIR" && cd ..
+
+# Använd "command substitution" för att spara resultatet av pipelinen
+# till variabeln "antal_rader".
+antal_rader=$(cat "katalogen/data.txt" "katalogto/data.txt" | wc -l)
+
+# Skriv ut resultatet med printf.
+# Referens: "Pro Bash Programming: Scripting the GNU/Linux Shell"
+#           Johnson, Chris and Varma, Jayant. 2nd Edition. Apress 2015.
+printf "\n%s %s\n" "totalt antal rader:" "$antal_rader" 
+cd --
+
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./laborationett/katalogen/data.txt
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+BEOWULF.
+
+
+
+
+I.
+
+THE LIFE AND DEATH OF SCYLD.
+
+
+{The famous race of Spear-Danes.}
+
+          Lo! the Spear-Danes' glory through splendid achievements
+          The folk-kings' former fame we have heard of,
+          How princes displayed then their prowess-in-battle.
+
+{Scyld, their mighty king, in honor of whom they are often called
+Scyldings. He is the great-grandfather of Hrothgar, so prominent in the
+poem.}
+
+          Oft Scyld the Scefing from scathers in numbers
+        5 From many a people their mead-benches tore.
+          Since first he found him friendless and wretched,
+          The earl had had terror: comfort he got for it,
+          Waxed 'neath the welkin, world-honor gained,
+          Till all his neighbors o'er sea were compelled to
+       10 Bow to his bidding and bring him their tribute:
+          An excellent atheling! After was borne him
+
+{A son is born to him, who receives the name of Beowulf--a name afterwards
+made so famous by the hero of the poem.}
+
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./laborationett/filtvaa.txt
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+fil två
+
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./laborationett/filtree.txt
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+fil tre
+
+[34m[02:42:22](B[m [32m[INFO](B[m    File: ./filett.txt
+[34m[02:42:22](B[m [32m[INFO](B[m    Contents:
+fil ett
+
+[34m[02:42:22](B[m [32m[INFO](B[m    Running "skalpgm.sh"
+
+totalt antal rader: 44
+[34m[02:42:22](B[m [32m[INFO](B[m    Done running test
