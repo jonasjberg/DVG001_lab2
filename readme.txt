@@ -1,7 +1,9 @@
 Introduktion till Linux och små nätverk 7,5 hp, distans, VT16
+================================================================================
 
 
 Inlämningsuppgift två
+---------------------
 
 Bifogade filer: Fil Laboration2.pdf (85,982 KB)
 
@@ -18,7 +20,8 @@ kommandoskalet.
 Ni behöver läsa igenom materialet i föreläsning F2 för att ha förkunskap för
 att göra den här laborationen.
 
-Den skall vara inlämnad senast 7/3 kl 23:59.   
+
+**Den skall vara inlämnad senast 7/3 kl 23:59.**
 
 Om den lämnas in senare så kommer den att rättas efter att alla andra
 laborationer har rättats.
