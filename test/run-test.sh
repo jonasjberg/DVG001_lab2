@@ -74,7 +74,7 @@ function msg_type()
 msg_type info "Starting test runner"
 msg_type info "Setting up test environment"
 
-if [ -x "$TEST_DIR" ]
+if [ -e "$TEST_DIR" ]
 then
     msg_type warn "Removing previous test environment"
     rm -rfv "$TEST_DIR"
