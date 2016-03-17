@@ -2,7 +2,6 @@
 
 #  Inlämningsuppgift #2
 
---------------------------------------------------------------------------------
 
 Jonas Sjöberg  
 Högskolan i Gävle  
@@ -11,6 +10,7 @@ Högskolan i Gävle
 
 
 Utförd: 2016-03-03 - 2016-03-06
+
 
 
 ### License
